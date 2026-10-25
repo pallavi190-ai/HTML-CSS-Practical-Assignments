@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Breakpoint Responsive Team Grid</title>
+    <style>
+        /* Modern System Font & Global Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #090d16;
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 60px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Blur Engine */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- HEADER STRUCTURE --- */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 600px;
+        }
+
+        header h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            background: linear-gradient(45deg, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* --- THE FLEX LAYOUT CONTAINER --- */
+        .team-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+            max-width: 1140px;
+        }
+
+        /* --- HIGH-FIDELITY PROFILE CARD COMPONENT --- */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
+            
+            /* --- PHASE 1: DESKTOP CARD VIEWPORT VALUES (3 Columns Default) --- */
+            width: calc(33.333% - 20px);
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            padding: 35px 25px;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.35);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.12);
+        }
+
+        /* Graphic Elements inside Card */
+        .avatar-frame {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+        }
+
+        .avatar-frame::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: #090d16;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .card-info h2 { font-size: 22px; font-weight: 700; color: #ffffff; }
+        .card-info span { font-size: 14px; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .card-bio {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .action-button {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto; /* Locks button flush to bottom boundary edge */
+        }
+
+        .action-button:hover {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+
+        /* ==========================================================
+           ⚡ BREAKPOINT STEP 1: TABLET/MID-SIZE DISPLAY RANGE (960px)
+           ========================================================== */
+        @media (max-width: 960px) {
+            body { padding: 40px 4%; }
+
+            /* Shifts grid mapping matrix from 3 columns down into a well-spaced 2-column configuration */
+            .profile-card {
+                width: calc(50% - 15px);
+                padding: 30px 20px;
+            }
+        }
+
+
+        /* ==========================================================
+           ⚡ BREAKPOINT STEP 2: MOBILE/COMPACT SCREEN RANGE (540px)
+           ========================================================== */
+        @media (max-width: 540px) {
+            header { margin-bottom: 35px; }
+            
+            .team-container { gap: 20px; }
+
+            /* Flattens the layout entirely into a single fluid vertical column card layer */
+            .profile-card {
+                width: 100%;
+                min-width: 100%;
+                /* Restructures internal orientation from vertical stack into horizontal row flow */
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+                gap: 20px;
+                padding: 24px;
+            }
+
+            .avatar-frame {
+                margin-bottom: 0;
+                width: 70px;
+                height: 70px;
+                flex-shrink: 0; /* Prevents structural circles squishing on extreme thin screens */
+            }
+
+            .card-info {
+                margin-bottom: 0;
+            }
+
+            .card-bio {
+                display: none; /* Safely strips long text blocks out on small mobile views to protect clean density tracking */
+            }
+
+            .action-button {
+                width: auto;
+                padding: 10px 16px;
+                font-size: 13px;
+                margin-top: 0;
+                margin-left: auto; /* Anchors button beautifully to the right edge margin */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Adaptive Component Matrix</h1>
+        <p>Resize your window canvas frame to witness clean card distribution shifts running smoothly across two distinct breakpoint thresholds.</p>
+    </header>
+
+    <!-- Main Responsive Layout Wrapper Framework Context Opens Here -->
+    <main class="team-container">
+        
+        <!-- Card Item 1 -->
+        <article class="profile-card">
+            <div class="avatar-frame"></div>
+            <div class="card-info">
+                <h2>Alex Morgan</h2>
+                <span>Lead Architect</span>
+            </div>
+            <p class="card-bio">Compiles micro-interaction scripts and core data architecture trees cleanly from the ground up.</p>
+            <button class="action-button" type="button">View Profile</button>
+        </article>
+
+        <!-- Card Item 2 -->
+        <article class="profile-card">
+            <div class="avatar-frame"></div>
+            <div class="card-info">
+                <h2>Sarah Chen</h2>
+                <span>UI Specialist</span>
+            </div>
+            <p class="card-bio">Engineers high-fidelity glassmorphic prototypes and elegant responsive layouts across system constraints.</p>
+            <button class="action-button" type="button">View Profile</button>
+        </article>
+
+        <!-- Card Item 3 -->
+        <article class="profile-card">
+            <div class="avatar-frame"></div>
+            <div class="card-info">
+                <h2>Marcus Vance</h2>
+                <span>DevOps Engineer</span>
+            </div>
+            <p class="card-bio">Optimizes workflow delivery limits and maintains low latency cloud structures for fast system cycles.</p>
+            <button class="action-button" type="button">View Profile</button>
+        </article>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Product Listing Layout</title>
+    <style>
+        /* Modern System Font & Global Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 60px 5%;
+        }
+
+        /* Container Section with Heading styling */
+        .store-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .store-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .store-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .store-header p {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        /* Core Flexbox Layout utilizing flex-wrap */
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Attractive Product Card Layout */
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            width: 280px; /* Base card width fixed for consistent tracking */
+            flex-grow: 1; /* Allows columns to fill spaces beautifully */
+            max-width: 380px; /* Prevents awkward stretching on big displays */
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Dynamic Lift Effect on Hover */
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Product Image Section with absolute badge positioning */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            overflow: hidden;
+        }
+
+        /* Sample placeholder designs mimicking clean vector art */
+        .image-container::before {
+            content: '✦';
+            position: absolute;
+            font-size: 72px;
+            color: rgba(255, 255, 255, 0.25);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .image-container::before {
+            transform: translate(-50%, -50%) rotate(45deg) scale(1.1);
+        }
+
+        /* Alternate gradient colors for visual variety */
+        .product-card:nth-child(2) .image-container { background: linear-gradient(135deg, #ec4899, #8b5cf6); }
+        .product-card:nth-child(3) .image-container { background: linear-gradient(135deg, #10b981, #3b82f6); }
+        .product-card:nth-child(4) .image-container { background: linear-gradient(135deg, #f59e0b, #e11d48); }
+
+        .tag-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Info and Pricing fields */
+        .product-details {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto; /* Pushes bottom controls flush regardless of text length */
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        /* Animated Action Button */
+        .buy-btn {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <section class="store-container">
+        <header class="store-header">
+            <h1>Featured Discoveries</h1>
+            <p>Explore our premium product wrap layout designed for perfect responsiveness</p>
+        </header>
+
+        <!-- The flex wrapping grid context opens here -->
+        <div class="product-grid">
+            
+            <!-- Card 1 -->
+            <article class="product-card">
+                <div class="image-container">
+                    <span class="tag-badge">NEW</span>
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Quantum Headset</h2>
+                    <p class="product-desc">Immerse yourself completely in next-generation audio featuring raw acoustics and dynamic spatial noise cancellation.</p>
+                    <div class="price-row">
+                        <span class="price">$299</span>
+                        <button class="buy-btn" type="button">Add to Cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="product-card">
+                <div class="image-container">
+                    <span class="tag-badge">TRENDING</span>
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Aero Smartwatch 4</h2>
+                    <p class="product-desc">Track routines effortlessly with zero-bezel structural designs, health sensors, and deep cellular tracking arrays.</p>
+                    <div class="price-row">
+                        <span class="price">$199</span>
+                        <button class="buy-btn" type="button">Add to Cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="product-card">
+                <div class="image-container">
+                    <span class="tag-badge">POPULAR</span>
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Neon Keyboard Pro</h2>
+                    <p class="product-desc">Ultra-fast mechanical inputs wrapped cleanly in aircraft-grade structural frames with per-key custom ambient matrix colors.</p>
+                    <div class="price-row">
+                        <span class="price">$149</span>
+                        <button class="buy-btn" type="button">Add to Cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="product-card">
+                <div class="image-container">
+                    <span class="tag-badge">SALE</span>
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Apex Wireless Mouse</h2>
+                    <p class="product-desc">Ergonomic structural builds paired with high-performance optical tracking sensors and incredible battery lifecycle limits.</p>
+                    <div class="price-row">
+                        <span class="price">$89</span>
+                        <button class="buy-btn" type="button">Add to Cart</button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+</body>
+</html>

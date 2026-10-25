@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Landing Page Framework</title>
+    <style>
+        /* --- 1. DESIGN TOKENS & SYSTEM VARIABLES --- */
+        :root {
+            --bg-main: #060913;
+            --bg-surface: rgba(255, 255, 255, 0.02);
+            --border-glow: rgba(99, 102, 241, 0.25);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-linear: linear-gradient(135deg, #6366f1, #a855f7);
+            --font-stack: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --site-padding: 0 8%;
+        }
+
+        /* --- 2. GLOBAL RESET & BASE CANVAS --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Modern Abstract Blueprint Grid Overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* High-Definition Ambient Glow Orb */
+        body::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -150px;
+            right: -100px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- 3. BASE DESKTOP MACRO STRUCTURES --- */
+        
+        /* Fixed Header/Navigation Area */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            padding: var(--site-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(6, 9, 19, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: var(--accent-linear);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Primary Hero Layout Section */
+        .hero-section {
+            min-height: 90vh;
+            padding: 160px 8% 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content-frame {
+            flex: 12;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            background: var(--accent-linear);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-lead-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* Master Skeleton Display Container (Right Column) */
+        .hero-graphic-frame {
+            flex: 10;
+            display: flex;
+            justify-content: center;
+        }
+
+        .skeleton-display-card {
+            width: 100%;
+            max-width: 440px;
+            height: 360px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .skeleton-display-card:hover {
+            border-color: var(--border-glow);
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Structural Mock Skeleton Layout Blocks */
+        .mock-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--accent-linear);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .mock-strip {
+            width: 85%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            margin-bottom: 14px;
+        }
+
+        .mock-strip.short {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Header Core Context -->
+    <header class="site-header">
+        <a href="#" class="brand-logo">PROTOTYPE.</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Overview</a></li>
+                <li><a href="#" class="nav-link">Features</a></li>
+                <li><a href="#" class="nav-link">Documentation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Structural Layout Content Canvas -->
+    <main>
+        <section class="hero-section">
+            
+            <!-- Left Grid Information Column -->
+            <div class="hero-content-frame">
+                <h1 class="hero-title">The Foundation For <span>Your Next Asset</span></h1>
+                <p class="hero-lead-text">This skeleton provides a rock-solid, production-grade layout framework. It establishes root design tokens, custom font rendering alignments, and high-fidelity ambient backdrop vectors.</p>
+            </div>
+
+            <!-- Right Grid Visual Column -->
+            <div class="hero-graphic-frame">
+                <div class="skeleton-display-card">
+                    <div class="mock-circle"></div>
+                    <div class="mock-strip"></div>
+                    <div class="mock-strip"></div>
+                    <div class="mock-strip short"></div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>

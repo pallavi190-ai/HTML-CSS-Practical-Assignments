@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card Component</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, rgb(69, 6, 42), rgb(220, 6, 127));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-card {
+            width: 100%;
+            max-width: 340px;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(35, 40, 90, 0.15);
+        }
+
+        .card-header {
+            height: 120px;
+            background: linear-gradient(135deg,#ae0f32, #410961);
+        }
+
+        .profile-image {
+            width: 115px;
+            height: 115px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-top: -60px;
+            background: #eee;
+        }
+
+        .profile-info {
+            padding: 18px 25px 25px;
+        }
+
+        .profile-info h1 {
+            font-size: 25px;
+            color: #252544;
+            margin-bottom: 8px;
+        }
+
+        .role {
+            color: #410961;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color:#ae0f32 ;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 22px;
+        }
+
+        .stat strong {
+            display: block;
+            color: #410961;
+            font-size: 18px;
+        }
+
+        .stat span {
+            color: #ae0f32;
+            font-size: 14px;
+        }
+
+        .follow-button {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ae0f32, #410961);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .follow-button:hover {
+            background: #410961;
+        }
+
+        .social-links {
+            margin-top: 18px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 8px;
+            color: #ae0f32;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <article class="profile-card">
+            <div class="card-header"></div>
+            
+            <!-- src में एक सैंपल इमेज जोड़ी गई है ताकि कार्ड सुंदर दिखे -->
+            <img class="profile-image" src="https://unsplash.com" alt="Profile Image">
+            
+            <div class="profile-info">
+                <h1>Pallavi</h1>
+                <p class="role">Web Developer</p>
+                <p class="description">
+                    Passionate about building modern, responsive web applications and creating simple digital experiences with HTML, CSS and JavaScript.
+                </p>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <strong>24</strong>
+                        <span>Projects</span>
+                    </div>
+                    <div class="stat">
+                        <strong>1.2k</strong>
+                        <span>Followers</span>
+                    </div>
+                    <div class="stat">
+                        <strong>188</strong>
+                        <span>Following</span>
+                    </div>
+                </div>
+
+                <button class="follow-button" id="followBtn" type="button" aria-pressed="false">
+                    Follow
+                </button>
+
+                <div class="social-links">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        const followBtn = document.getElementById("followBtn");
+
+        followBtn.addEventListener("click", function () {
+            const isFollowing = followBtn.getAttribute("aria-pressed") === "true";
+
+            followBtn.textContent = isFollowing ? "Follow" : "Following";
+            followBtn.setAttribute("aria-pressed", String(!isFollowing));
+        });
+    </script>
+
+</body>
+</html>
