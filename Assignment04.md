@@ -1,4 +1,4 @@
-# Assignment 4 – Repository with at least three meaningful commits
+# Assignment 4 – Submit a repository with at least three meaningful commits.
 
 ```bash
 # one-time identity setup

@@ -1,4 +1,4 @@
-# Assignment 5 – GitHub repository link
+# Assignment 5 – Share the pushed GitHub repository link as proof of setup.
 
 ## Push steps
 

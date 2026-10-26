@@ -1,4 +1,5 @@
-# Question 3 -
+# Question 3 - Complete a short terminal-navigation practice sheet.
+
 <h4>Below is provided the short terminal-navigation practice sheet.</h4>
 # Terminal Navigation Practice Sheet
 
